@@ -1,0 +1,20 @@
+{application, eredis_poolboy,
+ [
+  {description, ""},
+  {vsn, "1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { eredis_poolboy_app, []}},
+  {env, [
+          {global_or_local, local},
+          {pools, [
+                   {default, [
+                              {size, 10},
+                              {max_overflow, 20}
+                             ], [] }
+                  ]}
+        ]}
+ ]}.

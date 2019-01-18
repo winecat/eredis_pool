@@ -1,4 +1,4 @@
--module(eredis_pool_sup).
+-module(eredis_poolboy_sup).
 
 -behaviour(supervisor).
 
@@ -20,8 +20,8 @@
 %% ===================================================================
 
 start_link() ->
-    {ok, Pools} = application:get_env(eredis_pool, pools),
-    {ok, GlobalOrLocal} = application:get_env(eredis_pool, global_or_local),
+    {ok, Pools} = application:get_env(eredis_poolboy, pools),
+    {ok, GlobalOrLocal} = application:get_env(eredis_poolboy, global_or_local),
     start_link(Pools, GlobalOrLocal).
 
 start_link(Pools, GlobalOrLocal) ->

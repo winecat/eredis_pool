@@ -6,7 +6,7 @@
 %%% @end
 %%% Created :  9 Oct 2011 by Hiroe Shin <shin@mac-hiroe-orz-17.local>
 %%%-------------------------------------------------------------------
--module(eredis_pool).
+-module(eredis_poolboy).
 
 %% Include
 -include_lib("eunit/include/eunit.hrl").
@@ -40,27 +40,27 @@ stop() ->
              {ok, pid()} | {error,{already_started, pid()}}).
 
 create_pool(PoolName, Size) ->
-    eredis_pool_sup:create_pool(PoolName, Size, []).
+    eredis_poolboy_sup:create_pool(PoolName, Size, []).
 
 -spec(create_pool(PoolName::atom(), Size::integer(), Host::string()) -> 
              {ok, pid()} | {error,{already_started, pid()}}).
 
 create_pool(PoolName, Size, Host) ->
-    eredis_pool_sup:create_pool(PoolName, Size, [{host, Host}]).
+    eredis_poolboy_sup:create_pool(PoolName, Size, [{host, Host}]).
 
 -spec(create_pool(PoolName::atom(), Size::integer(), 
                   Host::string(), Port::integer()) -> 
              {ok, pid()} | {error,{already_started, pid()}}).
 
 create_pool(PoolName, Size, Host, Port) ->
-    eredis_pool_sup:create_pool(PoolName, Size, [{host, Host}, {port, Port}]).
+    eredis_poolboy_sup:create_pool(PoolName, Size, [{host, Host}, {port, Port}]).
 
 -spec(create_pool(PoolName::atom(), Size::integer(), 
                   Host::string(), Port::integer(), Database::string()) -> 
              {ok, pid()} | {error,{already_started, pid()}}).
 
 create_pool(PoolName, Size, Host, Port, Database) ->
-    eredis_pool_sup:create_pool(PoolName, Size, [{host, Host}, {port, Port},
+    eredis_poolboy_sup:create_pool(PoolName, Size, [{host, Host}, {port, Port},
                                                  {database, Database}]).
 
 -spec(create_pool(PoolName::atom(), Size::integer(), 
@@ -69,7 +69,7 @@ create_pool(PoolName, Size, Host, Port, Database) ->
              {ok, pid()} | {error,{already_started, pid()}}).
 
 create_pool(PoolName, Size, Host, Port, Database, Password) ->
-    eredis_pool_sup:create_pool(PoolName, Size, [{host, Host}, {port, Port},
+    eredis_poolboy_sup:create_pool(PoolName, Size, [{host, Host}, {port, Port},
                                                  {database, Database},
                                                  {password, Password}]).
 
@@ -80,7 +80,7 @@ create_pool(PoolName, Size, Host, Port, Database, Password) ->
              {ok, pid()} | {error,{already_started, pid()}}).
 
 create_pool(PoolName, Size, Host, Port, Database, Password, ReconnectSleep) ->
-    eredis_pool_sup:create_pool(PoolName, Size, [{host, Host}, {port, Port},
+    eredis_poolboy_sup:create_pool(PoolName, Size, [{host, Host}, {port, Port},
                                                  {database, Database},
                                                  {password, Password},
                                                  {reconnect_sleep, ReconnectSleep}]).
@@ -93,7 +93,7 @@ create_pool(PoolName, Size, Host, Port, Database, Password, ReconnectSleep) ->
 -spec(delete_pool(PoolName::atom()) -> ok | {error,not_found}).
 
 delete_pool(PoolName) ->
-    eredis_pool_sup:delete_pool(PoolName).
+    eredis_poolboy_sup:delete_pool(PoolName).
 
 %%--------------------------------------------------------------------
 %% @doc

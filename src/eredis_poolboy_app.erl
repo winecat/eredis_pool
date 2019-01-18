@@ -1,4 +1,4 @@
--module(eredis_pool_app).
+-module(eredis_poolboy_app).
 
 -behaviour(application).
 
@@ -10,7 +10,7 @@
 %% ===================================================================
 
 start(_StartType, _StartArgs) ->
-    eredis_pool_sup:start_link().
+    eredis_poolboy_sup:start_link().
 
 stop(_State) ->
     ok.
